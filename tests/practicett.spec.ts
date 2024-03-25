@@ -3,66 +3,114 @@ import { LoginPage } from '../pages/loginPage.spec';
 import { testData } from './testData';
 import { HomePage } from '../pages/homePage.spec';
 //#1 Free CRM Power Up your Entire Business Free Forever
-    //go to page
+//go to page
 
-    //check title
-    
-    //login link to be visible
+//check title
 
-    //click on loginlink
+//login link to be visible
 
-    test('freecrmlogintest', async({page})=>{
-        const loginPage = new LoginPage(page);
-        const homePage = new HomePage(page);
+//click on loginlink
 
-        await loginPage.goToLoginPage();
+// test('freecrmlogintest', async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     const homePage = new HomePage(page);
 
-        await expect(page).toHaveTitle("#1 Free CRM Power Up your Entire Business Free Forever");
+//     await loginPage.goToLoginPage();
 
-        await expect(loginPage.loginLink).toBeVisible();
+//     await expect(page).toHaveTitle("#1 Free CRM Power Up your Entire Business Free Forever");
 
-        await loginPage.clickOnLoginLink();
+//     await expect(loginPage.loginLink).toBeVisible();
 
-        await loginPage.emailField.waitFor({state:'visible',timeout:8000})        
-        
-        await loginPage.loginWithValidUser(testData.username,testData.password);
+//     await loginPage.clickOnLoginLink();
 
-        // await homePage.getAccountId();
+//     await loginPage.emailField.waitFor({ state: 'visible', timeout: 8000 })
 
-        // const text = homePage.getValue("accountId");
-        // await expect(homePage.accountId).toHaveText(text);
+//     await loginPage.loginWithValidUser(testData.username, testData.password);
 
-        // const dataObj = {};
-        // const firstPageText = await homePage.accountId.innerText();
-        // console.log(firstPageText);
+//     // await homePage.getAccountId();
 
-        //contacts
-        await page.locator(".users.icon").click();
+//     // const text = homePage.getValue("accountId");
+//     // await expect(homePage.accountId).toHaveText(text);
 
-        await page.getByText("Create").click();
+//     // const dataObj = {};
+//     // const firstPageText = await homePage.accountId.innerText();
+//     // console.log(firstPageText);
 
-        await page.locator("input[name='first_name']").fill("Hello");
-        await page.locator("input[name='last_name']").fill("Kitty "+ Math.random());
-        await page.getByText("Save").click();
+//     //contacts
+//     await page.locator(".users.icon").click();
 
-        await expect(page.locator(".selectable")).not.toContainText("Create New Contact");
-        
-        //stores locator text
-        const orgText = await page.locator(".selectable").innerText();
-        console.log(orgText);
+//     await page.getByText("Create").click();
 
-        //go to contacts
-        await page.goto("https://ui.cogmento.com/contacts");
+//     await page.locator("input[name='first_name']").fill("Hello");
+//     await page.locator("input[name='last_name']").fill("Kitty " + Math.random());
+//     await page.getByText("Save").click();
 
-        //mousehover
-        await homePage.accountId.first().hover();
-        
-        //searches by locator text
-        await page.getByText(orgText).click();
+//     await expect(page.locator(".selectable")).not.toContainText("Create New Contact");
 
-        await expect(page.getByText(orgText)).toBeVisible();
+//     //stores locator text
+//     const orgText = await page.locator(".selectable").innerText();
+//     console.log(orgText);
 
-    })
+//     //go to contacts
+//     await page.goto("https://ui.cogmento.com/contacts");
+
+//     //mousehover
+//     await homePage.accountId.first().hover();
+
+//     //searches by locator text
+//     await page.getByText(orgText).click();
+
+//     await expect(page.getByText(orgText)).toBeVisible();
+
+// });
+
+
+test('tryingDataObj', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+
+    await loginPage.goToLoginPage();
+
+    await expect(page).toHaveTitle("#1 Free CRM Power Up your Entire Business Free Forever");
+
+    await expect(loginPage.loginLink).toBeVisible();
+
+    await loginPage.clickOnLoginLink();
+
+    await loginPage.emailField.waitFor({ state: 'visible', timeout: 8000 })
+
+    await loginPage.loginWithValidUser(testData.username, testData.password);
+
+    //contacts
+    await page.locator(".users.icon").click();
+    await page.getByText("Create").click();
+    await page.locator("input[name='first_name']").fill("Erik");
+    await page.locator("input[name='last_name']").fill("Angel " + Math.random());
+    await page.getByText("Save").click();
+
+    await expect(page.locator(".selectable")).not.toContainText("Create New Contact");
+
+    //stores text of the locator
+    const dataObj = {};
+    const storedText = await page.locator(".selectable").innerText();
+    dataObj['accId'] = storedText;
+    console.log(dataObj['accId']);
+
+    // //navigate back to contacts
+    await page.goto("https://ui.cogmento.com/contacts");
+
+    //mousehover
+    await homePage.accountId.first().hover();
+
+    //searches by locator text
+    await page.getByText(dataObj['accId']).click();
+
+    await expect(page.getByText(dataObj['accId'])).toBeVisible();
+
+
+
+
+});
 
 
 
