@@ -60,6 +60,8 @@ import { HomePage } from '../pages/homePage.spec';
         //searches by locator text
         await page.getByText(orgText).click();
 
+        await expect(page.getByText(orgText)).toBeVisible();
+
     })
 
 
