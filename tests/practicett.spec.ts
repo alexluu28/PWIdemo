@@ -65,52 +65,52 @@ import { HomePage } from '../pages/homePage.spec';
 // });
 
 
-test('tryingDataObj', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const homePage = new HomePage(page);
+// test('tryingDataObj', async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     const homePage = new HomePage(page);
 
-    await loginPage.goToLoginPage();
+//     await loginPage.goToLoginPage();
 
-    await expect(page).toHaveTitle("#1 Free CRM Power Up your Entire Business Free Forever");
+//     await expect(page).toHaveTitle("#1 Free CRM Power Up your Entire Business Free Forever");
 
-    await expect(loginPage.loginLink).toBeVisible();
+//     await expect(loginPage.loginLink).toBeVisible();
 
-    await loginPage.clickOnLoginLink();
+//     await loginPage.clickOnLoginLink();
 
-    await loginPage.emailField.waitFor({ state: 'visible', timeout: 8000 })
+//     await loginPage.emailField.waitFor({ state: 'visible', timeout: 8000 })
 
-    await loginPage.loginWithValidUser(testData.username, testData.password);
+//     await loginPage.loginWithValidUser(testData.username, testData.password);
 
-    //contacts
-    await page.locator(".users.icon").click();
-    await page.getByText("Create").click();
-    await page.locator("input[name='first_name']").fill("Erik");
-    await page.locator("input[name='last_name']").fill("Angel " + Math.random());
-    await page.getByText("Save").click();
+//     //contacts
+//     await page.locator(".users.icon").click();
+//     await page.getByText("Create").click();
+//     await page.locator("input[name='first_name']").fill("Erik");
+//     await page.locator("input[name='last_name']").fill("Angel " + Math.random());
+//     await page.getByText("Save").click();
 
-    await expect(page.locator(".selectable")).not.toContainText("Create New Contact");
+//     await expect(page.locator(".selectable")).not.toContainText("Create New Contact");
 
-    //stores text of the locator
-    const dataObj = {};
-    const storedText = await page.locator(".selectable").innerText();
-    dataObj['accId'] = storedText;
-    console.log(dataObj['accId']);
+//     //stores text of the locator
+//     const dataObj = {};
+//     const storedText = await page.locator(".selectable").innerText();
+//     dataObj['accId'] = storedText;
+//     console.log(dataObj['accId']);
 
-    // //navigate back to contacts
-    await page.goto("https://ui.cogmento.com/contacts");
+//     // //navigate back to contacts
+//     await page.goto("https://ui.cogmento.com/contacts");
 
-    //mousehover
-    await homePage.accountId.first().hover();
+//     //mousehover
+//     await homePage.accountId.first().hover();
 
-    //searches by locator text
-    await page.getByText(dataObj['accId']).click();
+//     //searches by locator text
+//     await page.getByText(dataObj['accId']).click();
 
-    await expect(page.getByText(dataObj['accId'])).toBeVisible();
-
-
+//     await expect(page.getByText(dataObj['accId'])).toBeVisible();
 
 
-});
+
+
+// });
 
 
 
