@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "fast-csv": "^5.0.1",
-    "json2csv": "^6.0.0-alpha.2"
+    "json2csv": "^6.0.0-alpha.2",
+    "npm": "^11.0.0"
   }
 }
