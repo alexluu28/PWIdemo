@@ -10,5 +10,9 @@
   "devDependencies": {
     "@playwright/test": "^1.42.1",
     "@types/node": "^20.11.30"
+  },
+  "dependencies": {
+    "fast-csv": "^5.0.1",
+    "json2csv": "^6.0.0-alpha.2"
   }
 }
